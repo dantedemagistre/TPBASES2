@@ -1,5 +1,5 @@
 # database.py
-from astrapy import DataAPIClient
+from astrapy import DataAPIClient ,constants
 
 class AstraDBConnection:
     # Configuración de conexión con AstraDB
@@ -24,3 +24,5 @@ class AstraDBConnection:
     def find(self, collection_name, query=None):
         collection = self.get_collection(collection_name)
         return collection.find(query)
+    
+    

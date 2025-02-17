@@ -1,4 +1,5 @@
 # catalogo.py
+
 from cassandraConeccion import AstraDBConnection
 
 class Catalogo:
@@ -11,15 +12,22 @@ class Catalogo:
         if self.collection_name not in self.astra_db.db.list_collection_names():
             self.astra_db.create_collection(self.collection_name)
             print(f"Colección '{self.collection_name}' creada.")
+    def borrar_datos(self):
+        if self.collection_name in self.astra_db.db.list_collection_names():
+            try:
+                 self.astra_db.db[self.collection_name].delete_many({})
+            except Exception as e :
+                print( f'no se pudo borrar los datos de la coleccion {e}')
+
 
     def insert_initial_data(self):
         """Inserta datos iniciales en la colección 'Catalogo'."""
         catalogo_data = [
-            {"id_catalogo": 1, "id_producto": 1, "stock": 100, "precio": 50},
-            {"id_catalogo": 2, "id_producto": 2, "stock": 150, "precio": 75},
-            {"id_catalogo": 3, "id_producto": 3, "stock": 200, "precio": 100},
-            {"id_catalogo": 4, "id_producto": 4, "stock": 250, "precio": 125},
-            {"id_catalogo": 5, "id_producto": 5, "stock": 300, "precio": 150},
+            { "id_producto": 1, "stock": 100, "precio": 50},
+            { "id_producto": 2, "stock": 150, "precio": 75},
+            { "id_producto": 3, "stock": 200, "precio": 100},
+            { "id_producto": 4, "stock": 250, "precio": 125},
+            { "id_producto": 5, "stock": 300, "precio": 150},
         ]
         self.astra_db.insert_many(self.collection_name, catalogo_data)
         print(f"Datos insertados en '{self.collection_name}'.")

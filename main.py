@@ -35,28 +35,35 @@ print(catalogo.cambiarStock(2,0))
 ##sesiones
 
 sesion=Session()
+
+sesion.iniciar_session(15)
+
+sesion.nueva_solicitud(15,"301A")
+sesion.cerrar_session(15)
+
+print(sesion.todas_sesiones(15))
 #sesion.borrar_datos()
 
 #sesion.insert_initial_data()
-#sesion.find_all()
+
 #print("---------------{555555}-------")
 
-print(sesion.iniciar_session(10))
+#print(sesion.iniciar_session(10))
 #print("---------------{ln}-------")
 
 #print(sesion.todas_sesiones(4))
-print("---------------{ln}-------")
+#print("---------------{ln}-------")
 
-print(sesion.cerrar_session(10))
-print("---------------{ln}-------")
+#print(sesion.cerrar_session(10))
+#print("---------------{ln}-------")
 
 
 
-print(sesion.iniciar_session(10))
-print("---------------{ln}-------")
-print(sesion.cerrar_session(10))
-print("---------------{ln}-------")
-print(sesion.todas_sesiones(10))
+#print(sesion.iniciar_session(10))
+#print("---------------{ln}-------")
+#print(sesion.cerrar_session(10))
+#print("---------------{ln}-------")
+#print(sesion.todas_sesiones(10))
 """
 print("---------------{ln}-------")
 print(sesion.todas_sesiones(4))

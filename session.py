@@ -75,7 +75,7 @@ class Session:
                             ]
                         },
                         sort={
-                            "_id": constants.SortDocuments.ASCENDING,
+                            "inicio": constants.SortDocuments.ASCENDING,
                         },
                         projection={"_id": True}
                 )
@@ -140,11 +140,13 @@ class Session:
             return False
     
     def ultima_solicitud(self,id_cliente):
+        result=False
         try:
             result = self.astra_db.db[self.collection_name].find_one(        
             { "$and": [ {"id_cliente": id_cliente}]},
-            sort={ "_id": constants.SortDocuments.ASCENDING,},projection={"id_solicitud": True}
+            sort={ "inicio": constants.SortDocuments.ASCENDING,},projection={"id_solicitud": True}
             )
+            print(f"la ultima solicitud del usuario{id_cliente}es: {result.get("is_solicitud")}")
             return result.get("id_solicitud")
         except Exception as e:
             print( f"no se encontró una solicitud en la última sesion del cliente")
